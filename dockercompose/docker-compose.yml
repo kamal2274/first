@@ -1,0 +1,27 @@
+version : '3.9'
+services :
+  nginxweb :
+    container_name: web
+    image: nginx:latest 
+    ports:
+      - "8080:80"
+    depends_on:
+      - database
+    volumes:
+      - ./nginx:/usr/share/nginx/html
+
+
+
+  database :
+    container_name: db
+    image: postgres:15
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: mydb
+    restart: always
+    volumes: 
+      - postgres_db:/var/lib/postgresql/data
+
+volumes:
+  postgres_db: 

@@ -1,0 +1,16 @@
+services :
+  c1 :
+    image : nginx
+    ports :
+     - 6100:80
+  redis :
+    image : redis:alpine
+    ports :
+     - "6379:6379"  
+
+  c3 : 
+    build : .
+    ports : 
+     - "7100:7100"
+    depends_on : 
+     - redis
